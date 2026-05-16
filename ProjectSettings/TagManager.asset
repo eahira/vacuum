@@ -8,17 +8,17 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
+  - Ground
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Hazard
+  - Enemy
+  - Freezeable
+  - Collectible
+  - Checkpoint
+  - Interactable
   - 
   - 
   - 
