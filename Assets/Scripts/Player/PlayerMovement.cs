@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.15f;
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.45f, 0.08f);
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
@@ -31,9 +31,10 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
             horizontalInput = 1f;
 
-        isGrounded = Physics2D.OverlapCircle(
+        isGrounded = Physics2D.OverlapBox(
             groundCheck.position,
-            groundCheckRadius,
+            groundCheckSize,
+            0f,
             groundLayer
         );
 
@@ -45,10 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(
-            horizontalInput * moveSpeed,
-            rb.linearVelocity.y
-        );
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
     }
 
     private void OnDrawGizmosSelected()
@@ -57,9 +55,6 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(
-            groundCheck.position,
-            groundCheckRadius
-        );
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
     }
 }
