@@ -3,27 +3,39 @@ using UnityEngine;
 
 public class TimeSphere : MonoBehaviour
 {
+    public float activeTime = 2f;
+    public float radius = 3f;
+
     private readonly List<IFreezeable> frozenObjects = new();
+    private readonly List<IVacuumAffected> vacuumObjects = new();
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        IFreezeable freezeable = other.GetComponent<IFreezeable>();
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
 
-        if (freezeable != null && !frozenObjects.Contains(freezeable))
+        foreach (Collider2D hit in hits)
         {
-            freezeable.Freeze();
-            frozenObjects.Add(freezeable);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        foreach (IFreezeable freezeable in frozenObjects)
-        {
-            if (freezeable != null)
+            IFreezeable freezeable = hit.GetComponentInParent<IFreezeable>();
+            if (freezeable != null && !frozenObjects.Contains(freezeable))
             {
-                freezeable.Unfreeze();
+                freezeable.Freeze();
+                frozenObjects.Add(freezeable);
+            }
+
+            IVacuumAffected vacuum = hit.GetComponentInParent<IVacuumAffected>();
+            if (vacuum != null && !vacuumObjects.Contains(vacuum))
+            {
+                vacuum.ActivateVacuum();
+                vacuumObjects.Add(vacuum);
             }
         }
+
+        Destroy(gameObject, activeTime);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
