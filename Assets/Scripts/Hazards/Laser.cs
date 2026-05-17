@@ -13,7 +13,7 @@ public class Laser : MonoBehaviour, IVacuumAffected
         if (col == null) col = GetComponent<Collider2D>();
     }
 
-    public void ActivateVacuum()  // <- без параметров
+    public void ActivateVacuum()
     {
         if (sr != null) sr.enabled = false;
         if (col != null) col.enabled = false;

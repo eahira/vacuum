@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TimeSphere : MonoBehaviour
 {
-    public float activeTime = 2f;  // длительность сферы
+    public float activeTime = 2f;
     public float radius = 3f;
 
     private readonly List<IFreezeable> frozenObjects = new();
@@ -15,7 +15,6 @@ public class TimeSphere : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            // враги
             IFreezeable freezeable = hit.GetComponentInParent<IFreezeable>();
             if (freezeable != null && !frozenObjects.Contains(freezeable))
             {
@@ -23,7 +22,6 @@ public class TimeSphere : MonoBehaviour
                 frozenObjects.Add(freezeable);
             }
 
-            // лазеры Ч передаЄм длительность сферы
             IVacuumAffected vacuum = hit.GetComponentInParent<IVacuumAffected>();
             if (vacuum != null && !vacuumObjects.Contains(vacuum))
             {
@@ -32,7 +30,6 @@ public class TimeSphere : MonoBehaviour
             }
         }
 
-        // удалить сферу после activeTime
         Destroy(gameObject, activeTime);
     }
 

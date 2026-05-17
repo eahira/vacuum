@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour, IFreezeable
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
     }
 
-    // интерфейс IFreezeable
     public void Freeze()
     {
         if (isFrozen) return;
@@ -47,7 +46,6 @@ public class Enemy : MonoBehaviour, IFreezeable
         isFrozen = true;
         rb.linearVelocity = Vector2.zero;
 
-        // автоматически размораживаем через freezeTime
         Invoke(nameof(Unfreeze), freezeTime);
     }
 
@@ -58,7 +56,7 @@ public class Enemy : MonoBehaviour, IFreezeable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isFrozen) return;  // <-- главный фикс: не наносим урон, пока заморожен
+        if (isFrozen) return;
         if (!collision.collider.CompareTag("Player")) return;
 
         PlayerHealth player = collision.collider.GetComponent<PlayerHealth>();
