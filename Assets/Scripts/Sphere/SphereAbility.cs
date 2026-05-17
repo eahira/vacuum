@@ -8,11 +8,24 @@ public class SphereAbility : MonoBehaviour
     [SerializeField] private float activeTime = 2f;
     [SerializeField] private float cooldownTime = 4f;
 
-    private bool canUseSphere = true;
+    private float cooldownTimer;
+
+    public float CooldownTime => cooldownTime;
+    public float CooldownTimer => cooldownTimer;
+    public bool IsOnCooldown => cooldownTimer > 0f;
+    public bool CanUseSphere => cooldownTimer <= 0f;
 
     private void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && canUseSphere)
+        if (cooldownTimer > 0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer < 0f)
+                cooldownTimer = 0f;
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame && CanUseSphere)
         {
             CreateSphere();
         }
@@ -20,8 +33,6 @@ public class SphereAbility : MonoBehaviour
 
     private void CreateSphere()
     {
-        canUseSphere = false;
-
         GameObject sphere = Instantiate(
             spherePrefab,
             transform.position,
@@ -30,11 +41,6 @@ public class SphereAbility : MonoBehaviour
 
         Destroy(sphere, activeTime);
 
-        Invoke(nameof(ResetCooldown), cooldownTime);
-    }
-
-    private void ResetCooldown()
-    {
-        canUseSphere = true;
+        cooldownTimer = cooldownTime;
     }
 }
