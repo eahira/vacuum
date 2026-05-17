@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - hazard
+  - Enemy
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
