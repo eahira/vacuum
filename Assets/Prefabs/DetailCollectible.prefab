@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1070615756119575921}
   - component: {fileID: 6355224847830873934}
   - component: {fileID: 3495572918917581928}
-  - component: {fileID: 7830742950732296805}
+  - component: {fileID: 8745786482954000400}
   m_Layer: 11
   m_Name: DetailCollectible
   m_TagString: Untagged
@@ -129,7 +129,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.4
---- !u!114 &7830742950732296805
+--- !u!114 &8745786482954000400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7107828894334006789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85ad8da82380504f991956e1e51d9e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 11f473bbaf57db247ac82ea1097aeac3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectibleCurrency
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
+  type: 1
   amount: 1
