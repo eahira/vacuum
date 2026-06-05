@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4537373715094083245}
   - component: {fileID: 7030586505099789856}
   - component: {fileID: 4484725082999545127}
-  - component: {fileID: 4885509652548427451}
+  - component: {fileID: 8369020031604602968}
   m_Layer: 0
   m_Name: ClockPartCollectible
   m_TagString: Untagged
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4885509652548427451
+--- !u!114 &8369020031604602968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,6 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8701386058497917987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdc955f7bf7fb3439efb180d4c43683, type: 3}
+  m_Script: {fileID: 11500000, guid: 11f473bbaf57db247ac82ea1097aeac3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClockPartCollectible
+  m_EditorClassIdentifier: Assembly-CSharp::CollectibleItem
+  type: 0
+  amount: 1
